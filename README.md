@@ -29,19 +29,22 @@ Find below the documentation on how to use QINCo and its variants:
 
 #### [IVF_search](docs/IVF_search)
 
-## License
-
-This repository is under the CC-BY-NC license found in the root of the
-repository.
-
 ## Citation
 
-If you use QINCo in a research work please cite:
+If you use QINCo in a research work please cite [our paper](https://arxiv.org/abs/2401.14732):
 
 ```
 @article{huijben2023QINco,
   title={Residual Quantization with Implicit Neural Codebooks},
   author={Iris A.M. Huijben and Matthijs Douze and Matthew J. Muckley and Ruud J.G. van Sloun and Jakob Verbeek},
-  year={2024}
+  year={2024},
+  journal={arXiv preprint},
+  volume={2401.14732}
 }
 ```
+
+## Legal
+
+Qinco is licenced under CC-BY-NC, please refer to the [LICENSE](LICENSE) file in the top level directory.
+
+Copyright © Meta Platforms, Inc. See the [Terms of Use](https://opensource.fb.com/legal/terms/) and [Privacy Policy](https://opensource.fb.com/legal/privacy/) for this project.
