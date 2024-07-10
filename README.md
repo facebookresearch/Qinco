@@ -1,6 +1,7 @@
 ## **Q**uantization with **I**mplicit **N**eural **C**odebooks (QINCo)
 
-This code repository corresponds to the paper [Residual Quantization with Implicit Neural Codebooks](https://arxiv.org/pdf/2401.14732.pdf), in which **Q**uantization with **I**mplicit **N**eural **C**odebooks (QINCo) was proposed. 
+This code repository corresponds to the ICML'24 paper [Residual Quantization with Implicit Neural Codebooks](https://arxiv.org/pdf/2401.14732.pdf), in which **Q**uantization with **I**mplicit **N**eural **C**odebooks (QINCo) was proposed. 
+Please see the paper, or this [5 minute video](https://www.youtube.com/watch?v=Qa7cpvj0yNo) to learn more about Qinco.
 
 QINCo is a neurally-augmented algorithm for multi-codebook vector quantization, specifically residual quantization (RQ). Instead of using a fixed codebook per quantization step, QINCo uses a neural network to predict a codebook for the next quantization step, conditioned upon the quantized vector so far. In other words, the codebooks to be used depend on the Voronoi cells selected previously. This greatly enhances the capacity of the compression system, without the need to store more codebook vectors explicitly. 
 
