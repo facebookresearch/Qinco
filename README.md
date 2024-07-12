@@ -35,12 +35,12 @@ Find below the documentation on how to use QINCo and its variants:
 If you use QINCo in a research work please cite [our paper](https://arxiv.org/abs/2401.14732):
 
 ```
-@article{huijben2023QINco,
+@inproceedings{huijben2024QINco,
   title={Residual Quantization with Implicit Neural Codebooks},
   author={Iris A.M. Huijben and Matthijs Douze and Matthew J. Muckley and Ruud J.G. van Sloun and Jakob Verbeek},
   year={2024},
-  journal={arXiv preprint},
-  volume={2401.14732}
+  booktitle={International Conference on Machine Learning (ICML)},
+  url={https://openreview.net/forum?id=NBAc36V00H}
 }
 ```
 
