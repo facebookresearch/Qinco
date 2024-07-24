@@ -30,6 +30,9 @@ Find below the documentation on how to use QINCo and its variants:
 
 #### [IVF_search](docs/IVF_search)
 
+QINCo encoding / decoding is also implemented in Faiss. 
+See a demo here in the standard Faiss Github: [demo_qinco.py](https://github.com/facebookresearch/faiss/blob/main/demos/demo_qinco.py).
+
 ## Citation
 
 If you use QINCo in a research work please cite [our paper](https://arxiv.org/abs/2401.14732):
