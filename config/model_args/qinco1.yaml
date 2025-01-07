@@ -1,0 +1,31 @@
+# @package _global_
+L: 16
+de: null # Same as data dimension
+dh: 256
+A: 0
+B: 1
+M: 8
+K: 256
+ivf_K: 1048576
+
+# QINCo1 default training arguments
+optimizer: adam
+lr: 0.0001
+wd: 0
+grad_clip: 0
+batch: 1024
+epochs: 60
+
+# QINCo1: override some internal parameters to match QINCo1 parameters
+
+qinco1_mode: true # Train as with QINCo1
+
+scheduler:
+  name: reduce_lr_plateau
+  lr_min_fact: 1e-2
+  reduce_fact: 0.1
+  patience: 10
+  threshold_frac: 1e-10
+
+  ramp_epochs: 3
+  stop_patience: 20

@@ -1,0 +1,141 @@
+defaults:
+  - _self_
+  - model_args: null
+  - override hydra/job_logging: colorlog
+
+
+##################################
+##### Command-line arguments #####
+##################################
+
+task: null        # train, eval, etc.
+cpu: false        # Force execution on cpu
+inference: true   # Use Inference-optimized model when not training
+verbose: True
+resume: False     # Resume model training or large-scale search within an index from designated output file
+
+### Model arguments ###
+M: null
+K: null
+L: null
+de: null
+dh: null
+A: null     # substep candidates per beam, or 0 to disable
+B: null     # Beam size, 1 means no beam
+ivf_K: null
+
+#### Training arguments ###
+optimizer: adamw
+lr: 0.0008
+wd: 0.1 # Weight decay
+grad_clip: 0.1
+batch: 1024
+epochs: 60
+grad_accumulate: 1
+
+### Input / output paths ###
+output: null
+model: null               # Path to model weights to use, evaluate, or resume training from
+tensorboard: null         # If specified, will write tensorboard logs inside the specified directory
+ivf_centroids: null       # Where pre-computed IVF centroids are stored
+index: null               # Path to index for large-scale search
+encoded_db: null          # Path to encoded training database (should match vectors from 'db')
+encoded_trainset: null    # Path to encoded training vectors (should match vectors from 'trainset')
+pairwise_decoder: null    # Path to the weights of the pairwise decoder
+
+### Data sources paths ###
+db: null          # Name of database, or path to its file. If name, will auto-populate other fields
+trainset: null    # Path to training data, different from the database
+queries: null     # Queries for evaluating search within database
+queries_gt: null  # Ground-truth for queries
+
+ds: # Can be used to specify a maximum size, or 'null' to use all data available
+  trainset: null    # Restrict the maximum size of the trainset. To have smaller epoch, the 'loop' parameter might be more appropriate
+  valset: 10_000    # Number of elements removed from the trainset and kept for validation. Should not represent more than 50% of the maximum trainset
+  db: null          # Restrict the size of the DB, using only the first elements
+  loop: 10_000_000  # Number of training samples used at each epochs, looping over the full training set
+
+### Encoding arguments ###
+encode_trainset: false
+
+### Search arguments ###
+n_pairwise_codebooks: 2 # Number of pairwise codebooks added per initial codebooks (will be multipled by M)
+
+
+
+###############################
+##### Internal parameters #####
+###############################
+
+env:
+  PYTORCH_CUDA_ALLOC_CONF: "expandable_segments:True"
+  PYTORCH_JIT: "1"
+
+seed: 0
+qinco1_mode: null # Train as with QINCo1 if set to true
+
+codebook_noise_init: 0.1
+enc_max_bs: 65536
+ivf_in_use: null  # Set automatically
+mse_scale: 1
+
+scheduler:
+  name: cosine
+  ramp_epochs: 3
+  lr_min_fact: 1e-3
+  stop_patience: 10
+
+default_datasets: # Predifined paths to some datasets
+  FB_ssnpp1M:
+    db: data/fb_ssnpp/database1M.npy
+    trainset: data/fb_ssnpp/training_set10010k.npy
+    queries: data/fb_ssnpp/queries.npy
+    queries_gt: data/fb_ssnpp/ground_truth1M.npy
+    mse_scale: 0.0001
+  contriever1M:
+    db: data/contriever/database1M.npy
+    trainset: data/contriever/training_set.npy
+    queries: data/contriever/queries.npy
+    queries_gt: data/contriever/ground_truth1M.npy
+  bigann1M:
+    db: data/bigann/bigann_base.bvecs
+    trainset: data/bigann/bigann_learn.bvecs
+    queries: data/bigann/bigann_query.bvecs
+    queries_gt: data/bigann/gnd/idx_1M.ivecs
+    limit_db: 1_000_000 # Take only 1M elements in DB
+    mse_scale: 0.0001
+  bigann1B:
+    db: data/bigann/bigann_base.bvecs
+    trainset: data/bigann/bigann_learn.bvecs
+    queries: data/bigann/bigann_query.bvecs
+    queries_gt: data/bigann/gnd/idx_1000M.ivecs
+    mse_scale: 0.0001
+  deep1M:
+    db: data/deep1b/base.fvecs
+    trainset: data/deep1b/learn.fvecs
+    queries: data/deep1b/deep1B_queries.fvecs
+    queries_gt: data/deep1b/deep1M_groundtruth.ivecs
+    limit_db: 1_000_000 # Take only 1M elements in DB
+  deep1B:
+    db: data/deep1b/base.fvecs
+    trainset: data/deep1b/learn.fvecs
+    queries: data/deep1b/deep1B_queries.fvecs
+    queries_gt: data/deep1b/deep1B_groundtruth.ivecs
+
+search:
+  index_key: IVF${ivf_K}_HNSW32,RQ${M}x8_Nqint8
+  aq_training_samples: 1_000_000
+
+  ### Search arguments
+  nthreads: 32
+  batch_size: 12288
+
+  nshort: [4, 10]
+  nprobe: [4]
+  quantizer_efSearch: [4]
+  nmid_short: [1, 4]
+
+  # nshort: [1, 2, 4, 10, 20, 50, 100, 200, 500, 1000, 2000]
+  # nprobe: [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096]
+  # quantizer_efSearch: [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096]
+  # nmid_short: [1, 2, 3, 4, 6, 8, 12, 16]

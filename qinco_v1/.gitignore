@@ -1,0 +1,7 @@
+**/__pycache__/
+.vscode/
+models/*
+data/*/*.bvecs
+data/*/*.ivecs
+data/*/*.fvecs
+data/*/gnd/*.ivecs

@@ -1,0 +1,10 @@
+# @package _global_
+L: 16
+de: 384
+dh: 384
+
+A: 16
+B: 32
+M: 8
+K: 256
+ivf_K: 1048576
