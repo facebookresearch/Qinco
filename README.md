@@ -144,7 +144,7 @@ Additionally, for nearest-neighbour search, you need a set of queries (`queries`
 This command trains a new model and accepts a set of required and optional arguments:
 
 * The `output` argument should specify the path to the `.pt` checkpoint file that will be created during training.
-    * If the `resume` argument is set to `true` (default is `false`), the training will resume from the `output` path *if it exists*, or starts from scracth otherwise.
+    * If the `resume` argument is set to `true` (default is `false`), the training will resume from the `output` path *if it exists*, or starts from scratch otherwise.
 * You need to specify the models arguments `K` (codebook size, set to 256 in the paper), `M` (number of QINCo2 steps, and bytes if $K=256$), `dh` (hidden dimension $d_h$), `de` (embedding dimension $d_e$), `L` (number of residual blocks in each step), `A` (number of fast pre-selected candidates) and `B` (size of beam search). See the paper for reference.
     * The values of `A`, `B` and `de` can be set to `0` or `null` (default value) to disable these components. `A=null` implies no beam search, `B=0` implies no candidates pre-selection, and `de` implies an embedding dimension of same size as the data dimension.
     * You can also use a **preset**, using `model_args=<model-name>`. Available models are: `qinco1`, `qinco2-S`, `qinco2-M`, `qinco2-L`, which will set all these arguments if not specified manually.
