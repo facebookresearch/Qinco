@@ -1,0 +1,11 @@
+name: qinco2
+channels:
+  - pytorch
+  - nvidia
+  - defaults
+dependencies:
+  - python=3.11
+  - cudatoolkit=11.7
+  - pip
+  - pip:
+    - -r requirements.txt

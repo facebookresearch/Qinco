@@ -1,0 +1,16 @@
+--extra-index-url https://download.pytorch.org/whl/cu118
+numpy
+matplotlib
+torch==2.5.1+cu118
+hydra-core
+hydra-colorlog
+jupyterlab
+ipywidgets
+accelerate
+tensorboard
+torcheval
+einops
+faiss-cpu
+tensorboard
+
+--editable .
