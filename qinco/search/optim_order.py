@@ -1,3 +1,9 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+#
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
 PARETO_FRONT_SETTINGS = [
     {"quantizer_efSearch": 1, "nprobe": 1, "nshort": 1, "nmid_short": 1},
     {"quantizer_efSearch": 2, "nprobe": 1, "nshort": 1, "nmid_short": 1},
