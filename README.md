@@ -18,13 +18,13 @@ QINCo2 introduces several key novelties:
 If you use QINCo in a research work please cite our paper:
 
 ```
-@misc{vallaeys2025qinco2,
-    title={Qinco2: Vector Compression and Search with Improved Implicit Neural Codebooks},
-    author={Théophane Vallaeys and Matthew Muckley and Jakob Verbeek and Matthijs Douze},
+@inproceedings{
+    vallaeys2025qinco2,
+    title={Qinco2: Vector Compression and Search with Improved  Implicit Neural Codebooks},
+    author={Th{\'e}ophane Vallaeys and Matthew J. Muckley and Jakob Verbeek and Matthijs Douze},
+    booktitle={ICLR},
     year={2025},
-    eprint={2501.03078},
-    archivePrefix={arXiv},
-    primaryClass={cs.LG}
+    url={https://openreview.net/forum?id=2zMHHZ569S}
 }
 ```
 
